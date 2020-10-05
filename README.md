@@ -1,2 +1,2 @@
 # covid-19-statistics
-testing 1..2..3
+testing 1..2
