@@ -2,12 +2,17 @@ from flask import abort, Flask, request
 import requests
 import collections
 import operator
+import logging
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
+
 
 app = Flask(__name__)
 
 
 @app.route('/status/', methods=['GET'])
 def status():
+    print("in stat")
     return {
         "status": "success"
     }
@@ -93,4 +98,4 @@ def page_not_found(e):
 
 if __name__ == '__main__':
     # app.run(host="127.0.0.1", port=50000)
-    app.run()
+    app.run(debug=False)
