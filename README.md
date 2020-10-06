@@ -24,7 +24,7 @@ Project name: covid-19-statistics
 
 this project assumes that python with flask and requests packages install on your computer
 
-first please make sure the follows are installed:
+first, please make sure the follows are installed:
 
 - pip install flask
 - pip install requests
