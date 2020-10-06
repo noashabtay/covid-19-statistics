@@ -1,0 +1,51 @@
+def COUNTRIES_LIST
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+          steps {
+            script {
+               // The below will clone your repo and will be checked out to main branch by default.
+               checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'jenkins-user-git-repositoryyy', url: 'https://github.com/noashabtay/covid-19-statistics.git']]])
+               sh "ls -lart ./*"
+              }
+           }
+        }
+        stage('Input') {
+            input {
+                message "Please insert cauntries separated by comma:"
+                ok "start"
+                submitter "alice,bob"
+                parameters {
+                    string(name: 'COUNTRIES', defaultValue: 'israel,canada', description: 'press start to continue' )
+                }
+            }
+            steps {
+                script{
+                    // if (COUNTRIES.isEmpty()) {
+                    //     println 'list is empthy'
+                    // }else{
+                        println "the list of countries is : ${COUNTRIES}"
+                        def counties_names = COUNTRIES.tokenize(",")
+                        COUNTRIES_LIST = COUNTRIES.tokenize(",")
+                    // }
+                    
+                }
+            }
+        }
+        stage('Test'){
+            steps{
+                script{
+                    withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
+                        sh 'nohup python Covid-19-flask.py &'
+                        COUNTRIES_LIST.each { name ->
+                            sh "curl -s 'http://127.0.0.1:5000/newCasesPeak/?country=${name}'"
+                            sh "curl -s 'http://127.0.0.1:5000/deathsPeak/?country=${name}'"
+                            sh "curl -s 'http://127.0.0.1:5000/recoveredPeak/?country=${name}'"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
