@@ -23,7 +23,8 @@ This part includes
 Project name: covid-19-statistics
 
 this project assumes that python with flask and requests packages install on your computer
-first please make sure the follows are install :
+
+first please make sure the follows are installed:
 
 - pip install flask
 - pip install requests
@@ -34,8 +35,8 @@ first please make sure the follows are install :
 in your local jenkins run jenkinsfile as you like
 - if you run with Pipline script from SCM -
 
-  - change branch name to "*/*main*" 
-  - change script path to "*jenkinsfile*"
+  - change the 'Branch Specifier (blank for 'any')' to "*/*main*" 
+  - change the 'Script Path' to "*jenkinsfile*"
 
 
 After build you will have to insert a list of countries in the input session
