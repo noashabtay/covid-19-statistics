@@ -10,7 +10,7 @@ log.setLevel(logging.ERROR)
 app = Flask(__name__)
 
 
-@app.route('/status/', methods=['GET'])
+@app.route('/status', methods=['GET'])
 def status():
     """
     endpoint #4: return a value of success / fail to contact the backend API
