@@ -12,6 +12,10 @@ app = Flask(__name__)
 
 @app.route('/status/', methods=['GET'])
 def status():
+    """
+    endpoint #4: return a value of success / fail to contact the backend API
+    :return: JSON format
+    """
     print("in stat")
     return {
         "status": "success"
@@ -20,10 +24,12 @@ def status():
 
 def create_the_dict(country, option):
     """
-
+    This function creates a dictionary {"date" : cases_number} in the last 31 days
+    using the response from the External API
+    from a given country name and an option
     :param country:
-    :param option:
-    :return:
+    :param option: newCasesPeak, recoveredPeak , deathsPeak
+    :return: dictionary {"date" : cases_number}
     """
     if country == None:
         return {}
@@ -36,6 +42,12 @@ def create_the_dict(country, option):
 
 
 def dictionary_with_sub_values(dictionary):
+    """
+    This function creates ordered dictionary,
+    ordered by date, with value of the cases in each date
+    :param dictionary:
+    :return: dictionary
+    """
     ordered_dict = collections.OrderedDict()
     for key, value in dictionary.items():
         print(key, value)
@@ -50,6 +62,11 @@ def dictionary_with_sub_values(dictionary):
 
 
 def get_peak(dictionary):
+    """
+    This function returns the highest value and his date from a given dictionary
+    :param dictionary:
+    :return:
+    """
     items_pairs_after_sub = dictionary_with_sub_values(dictionary)
     peak_pair = max(items_pairs_after_sub.items(), key=operator.itemgetter(1))
     print(peak_pair)
@@ -62,6 +79,14 @@ def get_peak(dictionary):
 
 
 def peak_in_30_days(country, option, method):
+    """
+    this function returns a JSON response of the Peak in the last 30 days
+    from a given country name, option and method name
+    :param country: given country
+    :param option: newCasesPeak, recoveredPeak , deathsPeak
+    :param method: method name
+    :return: JSON format
+    """
     dictionary = create_the_dict(country, option)
     print(dictionary)
     max_date_keeper, max_subvalue_keeper = get_peak(dictionary)
@@ -75,18 +100,33 @@ def peak_in_30_days(country, option, method):
 
 @app.route('/recoveredPeak/', methods=['GET'])
 def recovered_peak():
+    """
+    endpoint #3: return the date and values of highest peak of recovered Covid-19 cases
+     in the last 30 days for a required country.
+    :return: JSON format
+    """
     country = request.args.get('country')
     return peak_in_30_days(country, 'recovered', 'recoveredPeak'), 200
 
 
 @app.route('/deathsPeak/', methods=['GET'])
 def deaths_peak():
+    """
+    endpoint #2: return the date and values of highest peak of death Covid-19 cases
+     in the last 30 days for a required country.
+    :return: JSON format
+    """
     country = request.args.get('country')
     return peak_in_30_days(country, 'deaths', 'deathsPeak'), 200
 
 
 @app.route('/newCasesPeak/', methods=['GET'])
 def new_cases_peak():
+    """
+    endpoint #1: return the date and values of highest peak of new Covid-19 cases
+     in the last 30 days for a required country.
+    :return: JSON format
+    """
     country = request.args.get('country')
     return peak_in_30_days(country, 'cases', 'newCasesPeak'), 200
 
@@ -97,5 +137,4 @@ def page_not_found(e):
 
 
 if __name__ == '__main__':
-    # app.run(host="127.0.0.1", port=50000)
     app.run(debug=False)
