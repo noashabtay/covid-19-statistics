@@ -15,9 +15,10 @@ running the flask app and query it with curl command
 
 # OPERATIONS
 in your local jenkins run jenkinsfile as you like
-- if you running with Pipline script from SCM - 
--- notice to change branch name to "*/*main*" 
--- and to change script path to "*jenkinsfile*"
+- if you running with Pipline script from SCM -
+
+  - notice to change branch name to "*/*main*" 
+  - and to change script path to "*jenkinsfile*"
 
 
 After build - you will have to insert list of countries in the Input Session
