@@ -13,9 +13,9 @@ Second part- JenkinsFile: that runs my flask-app and test its by using an input 
 
 This part includes 
 
-- clone with this repository - https://github.com/noashabtay/covid-19-statistics.git
-- running the flask app
-- watting for input - list of countries
+- clone this repository - https://github.com/noashabtay/covid-19-statistics.git
+- run the flask app
+- wait for input (list of countries)
 - query the flask app with curl command 
 
 
