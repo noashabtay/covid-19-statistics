@@ -22,6 +22,13 @@ This part includes
 # INFO
 Project name: covid-19-statistics
 
+
+- Python version: 2.7 / 3.8
+- pip version: 20.2.3
+- flask version: 20.2.3
+- requests version: 2.24.0
+
+
 this project assumes that python with flask and requests packages install on your computer
 
 first, please make sure the follows are installed:
