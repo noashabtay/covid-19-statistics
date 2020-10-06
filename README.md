@@ -35,8 +35,8 @@ first, please make sure the follows are installed:
 in your local jenkins run jenkinsfile as you like
 - if you run with Pipline script from SCM -
 
-  - change the 'Branch Specifier (blank for 'any')' to "*/*main*" 
-  - change the 'Script Path' to "*jenkinsfile*"
+  - change the 'Branch Specifier (blank for 'any')' to */*main* 
+  - change the 'Script Path' to *jenkinsfile*
 
 
 After build you will have to insert a list of countries in the input session
