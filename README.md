@@ -13,6 +13,19 @@ Second part- JenkinsFile: that runs my flask-app and test its by using an input 
 This part includes a connection with this repository - https://github.com/noashabtay/covid-19-statistics.git
 running the flask app and query it with curl command 
 
+
+# INFO
+Project name: covid-19-statistics
+
+this project assumed you have on your computer
+python with flask and requests packages 
+so please install first:
+
+- pip install flask
+- pip install requests
+
+
+
 # OPERATIONS
 in your local jenkins run jenkinsfile as you like
 - if you running with Pipline script from SCM -
@@ -22,14 +35,4 @@ in your local jenkins run jenkinsfile as you like
 
 
 After build - you will have to insert list of countries in the Input Session
-
-
-# INFO
-Project name: covid-19-statistics
-
-python: 3
-please install first:
-
-pip install flask
-pip install requests
 
