@@ -1,7 +1,7 @@
 # covid-19-statistics
 
 # INTRODUCTION
-This is a devops-test Project about using jenkins to query a flask service
+This is a devops Project about using jenkins to query a flask service
 
 The project includes 2 parts-
 
